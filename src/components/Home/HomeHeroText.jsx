@@ -1,9 +1,8 @@
-import React from "react";
 import Video from "./Video";
 
 const HomeHeroText = () => {
   return (
-    <div className="font-[font1] pt-5 text-center">
+    <div className="font-lausanne font-semibold pt-5 text-center">
       <div className="text-[9.5vw] uppercase leading-[8vw]">L'étincelle</div>
       <div className="flex items-center justify-center text-[9.5vw] uppercase leading-[8vw]">
         qui

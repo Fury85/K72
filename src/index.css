@@ -1,14 +1,51 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 1;
-  src: url(../public/fonts/Lausanne-300.woff2);
+  font-family: "Lausanne";
+  src: url("/fonts/Lausanne-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: 2;
-  src: url(../public/fonts/Lausanne-500.woff2);
+  font-family: "Lausanne";
+  src: url("/fonts/Lausanne-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-lausanne: "Lausanne", sans-serif;
 }
 
 body {
-  background-color: #111;
+  overflow-x: hidden;
+  /* background: black; */
+}
+
+.moveX {
+  animation-name: moveAnimation;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes moveAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.moveLink {
+  opacity: 0;
+}
+
+.link:hover .moveLink {
+  opacity: 1;
+  transition: all ease 0.3s;
+  cursor: pointer;
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 const HomeSideText = () => {
   return (
     <div className="w-[20vw] indent-[4em] flex self-end">
