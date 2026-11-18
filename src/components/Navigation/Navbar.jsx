@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { NavbarContext } from "../../context/NavContext";
+
 const Navbar = () => {
+  const [navOpen, setnavOpen] = useContext(NavbarContext);
+
   return (
     <div className="z-10 flex items-start justify-between fixed top-0 w-full ">
       <div className="p-3">
@@ -16,7 +21,12 @@ const Navbar = () => {
         </svg>
       </div>
 
-      <div className="group bg-black h-14 w-64 relative cursor-pointer overflow-hidden">
+      <div
+        onClick={() => {
+          setnavOpen(true);
+        }}
+        className="group bg-black h-14 w-64 relative cursor-pointer overflow-hidden"
+      >
         <div className="absolute top-0 bg-[#d3fd50] h-0 group-hover:h-full w-full transition-all"></div>
 
         <div className="relative w-full h-full flex items-center justify-end pr-3">

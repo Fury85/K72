@@ -1,14 +1,19 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useContext } from "react";
 import { useRef } from "react";
+import { NavbarContext } from "../../context/NavContext";
 
 const FullScreenNav = () => {
   const fullNavLinksRef = useRef(null);
-  useGSAP(function () {
+  const fullScreenRef = useRef(null);
+
+  const [navOpen, setnavOpen] = useContext(NavbarContext);
+
+  (useGSAP(function () {
     const tl = gsap.timeline();
 
     tl.from(".stairing", {
-      delay: 1,
       height: 0,
       stagger: {
         amount: -0.25,
@@ -22,11 +27,23 @@ const FullScreenNav = () => {
         amount: 0.25,
       },
     });
-  });
+
+    tl.pause();
+
+    if (navOpen) {
+      fullScreenRef.current.style.display = "block";
+      tl.play();
+    } else {
+      fullScreenRef.current.style.display = "none";
+      tl.reverse();
+    }
+  }),
+    [navOpen]);
   return (
     <div
+      ref={fullScreenRef}
       id="full-screen"
-      className="h-screen w-full overflow-x-hidden absolute bg-black"
+      className="h-screen w-full overflow-x-hidden absolute bg-black z-50"
     >
       <div className="h-screen w-full fixed">
         <div className="h-full w-full flex">
@@ -55,7 +72,12 @@ const FullScreenNav = () => {
             </svg>
           </div>
 
-          <div className="h-28 w-28 relative px-2 cursor-pointer hover:text-[#d3fd50]">
+          <div
+            onClick={() => {
+              setnavOpen(false);
+            }}
+            className="h-28 w-28 relative px-2 cursor-pointer hover:text-[#d3fd50]"
+          >
             <div className="h-36 w-0.5 absolute -rotate-45 origin-top bg-white"></div>
             <div className="h-36 w-0.5 absolute rotate-45 right-0 origin-top bg-white"></div>
             <div></div>
